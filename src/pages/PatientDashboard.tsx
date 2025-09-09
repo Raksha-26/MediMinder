@@ -475,6 +475,15 @@ export default function PatientDashboard() {
     { id: 'history' as const, label: 'History', icon: History },
   ];
 
+  // Helper function to format time to 12-hour format
+  const formatTimeTo12Hour = (time24: string) => {
+    const [hours, minutes] = time24.split(':');
+    const hour = parseInt(hours);
+    const ampm = hour >= 12 ? 'PM' : 'AM';
+    const hour12 = hour % 12 || 12;
+    return `${hour12}:${minutes} ${ampm}`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
       <NotificationToast />
